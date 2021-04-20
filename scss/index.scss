@@ -1,0 +1,29 @@
+//Colors
+@import "./colors.scss";
+
+//Layouts
+@import "../layouts/BasicLayout/BasicLoyout.scss";
+
+//Pages
+@import "../pages/index.scss";
+@import "../pages/account.scss";
+@import "../pages/category/category.scss";
+
+
+//Components
+@import "../components/Header/Header.scss";
+@import "../components/Header/TopBar/TopBar.scss";
+@import "../components/Header/Menu/Menu.scss";
+@import "../components/Modal/BasicModal/BasicModal.scss";
+@import "../components/Auth/LoginForm/LoginForm.scss";
+@import "../components/Account/ChangeNameForm/ChangeNameForm.scss";
+@import "../components/Account/ChangeEmailForm/ChangeEmailForm.scss";
+@import "../components/Account/ChangePasswordForm/ChangePasswordForm.scss";
+@import "../components/Account/AddressForm/AddressForm.scss";
+@import "../components/Account/ListAddress/ListAddress.scss";
+@import "../components/ListProducts/ListProducts.scss";
+@import "../components/Pagination/Pagination.scss";
+@import "../components/Product/HeaderProduct/HeaderProduct.scss";
+@import "../components/Product/TabsProduct/TabsProduct.scss";
+@import "../components/Product/InfoProduct/InfoProduct.scss";
+@import "../components/Product/CarouselScreenshots/CarouselScreenshots.scss";
