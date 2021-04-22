@@ -1,4 +1,4 @@
-import { size, includes, remove, result } from "lodash";
+import { size, includes, remove } from "lodash";
 import { toast } from "react-toastify";
 import { BASE_PATH, CART } from "../utils/constants";
 import { authFetch } from "../utils/fetch";
@@ -85,6 +85,6 @@ export async function paymentCartApi(token, products, idUser, address, logout) {
   }
 }
 
-export function removeAllProductCart(){
+export function removeAllProductCart() {
   localStorage.removeItem(CART);
 }

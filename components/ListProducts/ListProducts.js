@@ -1,5 +1,5 @@
 import { map, size } from "lodash";
-import { Image, Grid, GridRow } from "semantic-ui-react";
+import { Image, Grid } from "semantic-ui-react";
 import Link from "next/link";
 import useWindowSize from "../../hooks/useWindowSize";
 import {
@@ -34,7 +34,7 @@ export default function ListProducts(props) {
       <Grid>
         <Grid.Row columns={getColumnsRender()}>
           {map(products, (product) => (
-            <Product product={product} />
+            <Product key={product.id} product={product} />
           ))}
         </Grid.Row>
       </Grid>
@@ -45,7 +45,7 @@ export default function ListProducts(props) {
 /* <Image src={product.thumbnail_url} alt={product.name} for server Strapi*/
 function Product(props) {
   const { product } = props;
-  console.log(product);
+
   return (
 
     <Grid.Column className="list-products__product">

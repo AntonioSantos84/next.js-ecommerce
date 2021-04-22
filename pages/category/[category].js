@@ -46,10 +46,10 @@ export default function Category() {
 
   return (
     <BasicLayout className="category">
-    <Seo 
-      title= {query.category}
-      description= "Beauty category. A huge catalogue of beauty products"
-    />
+      <Seo
+        title={query.category}
+        description="Beauty category. A huge catalogue of beauty products"
+      />
       {!products && <Loader active>Loading Products...</Loader>}
       {products && size(products) === 0 && <div>No products</div>}
       {size(products) > 0 && <ListProducts products={products} />}

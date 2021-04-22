@@ -1,8 +1,9 @@
 import React from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { STRIPE_TOKEN } from "../../../utils/constants";
 import FormPayment from "./FormPayment";
+import { STRIPE_TOKEN } from "../../../utils/constants";
+
 
 const stripePromise = loadStripe(STRIPE_TOKEN);
 

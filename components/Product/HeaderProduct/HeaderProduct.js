@@ -4,7 +4,11 @@ import { Grid, Image, Icon, Button, Modal } from "semantic-ui-react";
 import classNames from "classNames";
 import useAuth from "../../../hooks/useAuth";
 import useCart from "../../../hooks/useCart";
-import { isWishlistAPI, addWishlistApi } from "../../../api/wishlist";
+import {
+  isWishlistAPI,
+  addWishlistApi,
+  deleteWishlistApi,
+} from "../../../api/wishlist";
 
 export default function HeaderProduct(props) {
   const { product } = props;
@@ -62,8 +66,11 @@ function InfoProduct(props) {
     }
   };
 
-  const removeWishlist = () => {
-    console.log("remove from wishlist");
+  const removeWishlist = async () => {
+    if (auth) {
+      await deleteWishlistApi(auth.idUser, product.id, logout);
+      setReloadWishlist(true);
+    }
   };
 
   return (
@@ -87,7 +94,8 @@ function InfoProduct(props) {
           <div className="header-product__buy-price-actions">
             <p>Discount: -{discount}%</p>
             <p>
-              Final Price: &#163;{price - Math.floor((price * discount) / 100)}
+              Final Price: &#163;
+              {(price - Math.floor(price * discount) / 100).toFixed(2)}
             </p>
           </div>
         </div>

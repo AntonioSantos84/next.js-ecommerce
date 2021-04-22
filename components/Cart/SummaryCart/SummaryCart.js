@@ -42,12 +42,12 @@ export default function SummaryCart(props) {
                   <Icon
                     name="close"
                     link
-                    onclick={() => removeProduct(product.url)}
+                    onClick={() => removeProduct(product.url)}
                   />
                   <Image src={product.urlimagen} alt={product.title} />
                   {product.title}
                 </Table.Cell>
-                <Table.Cell>{product.category.title}</Table.Cell>
+                <Table.Cell>{product.title}</Table.Cell>
                 <Table.Cell>24h to 48h</Table.Cell>
                 <Table.Cell>&#163;{product.price}</Table.Cell>
               </Table.Row>
