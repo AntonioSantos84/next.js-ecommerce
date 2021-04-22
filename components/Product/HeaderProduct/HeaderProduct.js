@@ -3,6 +3,7 @@ import { size } from "lodash";
 import { Grid, Image, Icon, Button, Modal } from "semantic-ui-react";
 import classNames from "classNames";
 import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
 import { isWishlistAPI, addWishlistApi } from "../../../api/wishlist";
 
 export default function HeaderProduct(props) {
@@ -39,31 +40,31 @@ export default function HeaderProduct(props) {
 
 function InfoProduct(props) {
   const { product } = props;
-  const { title, description, price, discount, inventory } = product;
+  const { title, description, price, discount, url } = product;
   const [isWishlist, setIsWishlist] = useState(false);
   const [reloadWishlist, setReloadWishlist] = useState(false);
   const { auth, logout } = useAuth();
-  console.log(isWishlist);
+  const { addProductCart } = useCart();
 
   useEffect(() => {
     (async () => {
       const response = await isWishlistAPI(auth.idUser, product.id, logout);
-if (size(response) > 0) setIsWishlist(true);
+      if (size(response) > 0) setIsWishlist(true);
       else setIsWishlist(false);
     })();
     setReloadWishlist(false);
   }, [product, reloadWishlist]);
 
   const addWishlist = async () => {
-    if(auth){
+    if (auth) {
       await addWishlistApi(auth.idUser, product.id, logout);
       setReloadWishlist(true);
     }
-  }
+  };
 
   const removeWishlist = () => {
     console.log("remove from wishlist");
-  }
+  };
 
   return (
     <>
@@ -75,9 +76,6 @@ if (size(response) > 0) setIsWishlist(true);
           link
           onClick={isWishlist ? removeWishlist : addWishlist}
         />
-      </div>
-      <div className="header-product__inventory">
-        Available stock:{inventory}
       </div>
       <div
         className="header-product__summary"
@@ -93,7 +91,12 @@ if (size(response) > 0) setIsWishlist(true);
             </p>
           </div>
         </div>
-        <Button className="header-product__buy-btn">Add to Cart</Button>
+        <Button
+          className="header-product__buy-btn"
+          onClick={() => addProductCart(url)}
+        >
+          Add to Cart
+        </Button>
       </div>
     </>
   );

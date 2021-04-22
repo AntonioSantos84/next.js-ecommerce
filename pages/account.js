@@ -10,6 +10,7 @@ import ChangePasswordForm from "../components/Account/ChangePasswordForm";
 import BasicModal from "../components/Modal/BasicModal";
 import AddressForm from "../components/Account/AddressForm";
 import ListAddress from "../components/Account/ListAddress";
+import Seo from "../components/Seo";
 
 export default function Account() {
   const [user, setUser] = useState(undefined);
@@ -31,6 +32,7 @@ export default function Account() {
 
   return (
     <BasicLayout className="account">
+    <Seo title={`My account - ${user.name} ${user.lastname}`}/>
       <Configuration
         user={user}
         logout={logout}
@@ -73,7 +75,6 @@ function Addresses() {
     setTitleModal(title);
     setFormModal(
       <AddressForm
-
         setShowModal={setShowModal}
         setReloadAddresses={setReloadAddresses}
         newAddress={address ? false : true}

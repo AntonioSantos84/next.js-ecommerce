@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Container, Menu, Grid, Icon } from "semantic-ui-react";
+import { Container, Menu, Grid, Icon, Label } from "semantic-ui-react";
 import Link from "next/link";
 import { map, size } from "lodash";
 import BasicModal from "../../Modal/BasicModal";
 import Auth from "../../Auth";
 import useAuth from "../../../hooks/useAuth";
+import useCart from "../../../hooks/useCart";
 import { getMeApi } from "../../../api/user";
 import { getCategoriesApi } from "../../../api/category";
 
@@ -31,7 +32,7 @@ export default function MenuWeb() {
   }, []);
 
   const onShowModal = () => setShowModal(true);
-  const onCloseModal = () => setCloseModal(false);
+  const onCloseModal = () => setShowModal(false);
 
   return (
     <div className="menu">
@@ -64,7 +65,7 @@ function MenuCategories(props) {
   return (
     <Menu>
       {map(categories, (category) => (
-       <Link href={`/category/${category.url}`} key={category._id}> 
+        <Link href={`/category/${category.url}`} key={category._id}>
           <Menu.Item as="a" name={category.url}>
             {category.name}
           </Menu.Item>
@@ -76,6 +77,7 @@ function MenuCategories(props) {
 
 function MenuOptions(props) {
   const { onShowModal, user, logout } = props;
+  const { productsCart } = useCart();
   return (
     <Menu>
       {user ? (
@@ -103,6 +105,11 @@ function MenuOptions(props) {
           <Link href="/cart">
             <Menu.Item as="a" className="m-0">
               <Icon name="cart" />
+              {productsCart > 0 && (
+                <Label color="red" floating circular>
+                  {productsCart}
+                </Label>
+              )}
             </Menu.Item>
           </Link>
 
