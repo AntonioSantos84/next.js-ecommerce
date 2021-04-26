@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, PureComponent } from "react";
 import { Grid } from "semantic-ui-react";
 import { map, size } from "lodash";
 import BasicLayout from "../layouts/BasicLayout";
@@ -30,7 +30,7 @@ export default function Orders() {
               You have not made any purchases yet.
             </h2>
           ) : (
-            <OrderList orders={orders} />
+            <OrderList orders={orders} key={orders.idPayment}/>
           )}
         </div>
       </div>

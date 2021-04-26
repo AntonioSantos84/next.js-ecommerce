@@ -1,4 +1,4 @@
-import React, { usestate } from "react";
+import React, { useState } from "react";
 import { Image, Icon } from "semantic-ui-react";
 import link from "next/link";
 import moment from "moment";
@@ -31,12 +31,7 @@ export default function Order(props) {
             <p className="order__other-date">
               {moment(createdAt).format("L")} - {moment(createdAt).format("LT")}
             </p>
-            <Icon
-              name="eye"
-              circular
-              link
-              onClick={() => setShowModal(true)}
-            />
+            <Icon name="eye" circular link onClick={() => setShowModal(true)} />
           </div>
         </div>
       </div>
@@ -62,10 +57,13 @@ function AddressModal(props) {
     >
       <h3>The order has been sent to the following address.</h3>
       <div>
-          <p>{addressShipping.name}</p>
-          <p>{addressShipping.address}</p>
-          <p>{addressShipping.state}, {addressShipping.city}, {addressShipping.postalCode}</p>
-          <p>{addressShipping.phone}</p>
+        <p>{addressShipping.name}</p>
+        <p>{addressShipping.address}</p>
+        <p>
+          {addressShipping.state}, {addressShipping.city},{" "}
+          {addressShipping.postalCode}
+        </p>
+        <p>{addressShipping.phone}</p>
       </div>
     </BasicModal>
   );
